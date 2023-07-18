@@ -2,7 +2,7 @@ package org.example;
 
 import java.sql.*;
 
-public class UserDao {
+public abstract class UserDao {
     /**
      * JDBC 연결 순서
      * 1. DB 연결을 위한 Connection 을 가져온다.
@@ -50,10 +50,5 @@ public class UserDao {
         return user;
     }
 
-    private Connection getConnection() throws ClassNotFoundException, SQLException {
-        Class.forName("com.mysql.jdbc.Driver");
-        Connection c = DriverManager.getConnection("jdbc:mysql://localhost/TEST_DB", "TESTUSER", "1234");
-
-        return c;
-    }
+    public abstract Connection getConnection() throws ClassNotFoundException, SQLException;
 }
