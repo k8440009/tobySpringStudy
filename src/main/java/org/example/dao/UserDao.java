@@ -20,9 +20,9 @@ public class UserDao {
 
     private ConnectionMaker connectionMaker;
 
-    public UserDao() {
+    public UserDao(ConnectionMaker connectionMaker) {
         // 여기는 클래스 이름이 나온다.
-        connectionMaker = new DConnectionMaker();
+        this.connectionMaker = connectionMaker;
     }
 
     public void add(User user) throws ClassNotFoundException, SQLException {

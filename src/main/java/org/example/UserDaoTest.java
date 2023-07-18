@@ -1,13 +1,19 @@
 package org.example;
 
+import org.example.dao.ConnectionMaker;
+import org.example.dao.DConnectionMaker;
+import org.example.dao.NConnectionMaker;
 import org.example.dao.UserDao;
 
 import java.sql.SQLException;
 
-public class Main {
+public class UserDaoTest {
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
-        UserDao dao1 = new UserDao();
-        UserDao dao2 = new UserDao();
+        ConnectionMaker connectionMaker1 = new DConnectionMaker();
+        ConnectionMaker connectionMaker2 = new NConnectionMaker();
+
+        UserDao dao1 = new UserDao(connectionMaker1);
+        UserDao dao2 = new UserDao(connectionMaker2);
 
         // d사 테스트
         User user = new User();
@@ -42,3 +48,4 @@ public class Main {
         System.out.println(user2.getId() + " 조회 성공");
     }
 }
+
