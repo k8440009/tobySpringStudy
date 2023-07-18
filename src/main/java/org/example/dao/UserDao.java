@@ -1,8 +1,10 @@
-package org.example;
+package org.example.dao;
+
+import org.example.User;
 
 import java.sql.*;
 
-public abstract class UserDao {
+public class UserDao {
     /**
      * JDBC 연결 순서
      * 1. DB 연결을 위한 Connection 을 가져온다.
@@ -15,8 +17,16 @@ public abstract class UserDao {
      * @throws ClassNotFoundException
      * @throws SQLException
      */
+
+    private ConnectionMaker connectionMaker;
+
+    public UserDao() {
+        // 여기는 클래스 이름이 나온다.
+        connectionMaker = new DConnectionMaker();
+    }
+
     public void add(User user) throws ClassNotFoundException, SQLException {
-        Connection c = this.getConnection();
+        Connection c = connectionMaker.makeConnection();
 
         PreparedStatement ps = c.prepareStatement("insert into users(id, name, password) values(?,?,?)");
         ps.setString(1, user.getId());
@@ -30,7 +40,7 @@ public abstract class UserDao {
     }
 
     public User get(String id) throws ClassNotFoundException, SQLException {
-        Connection c = this.getConnection();
+        Connection c = connectionMaker.makeConnection();
 
         PreparedStatement ps = c.prepareStatement("select * from users where id = ?");
         ps.setString(1, id);
@@ -50,5 +60,4 @@ public abstract class UserDao {
         return user;
     }
 
-    public abstract Connection getConnection() throws ClassNotFoundException, SQLException;
 }

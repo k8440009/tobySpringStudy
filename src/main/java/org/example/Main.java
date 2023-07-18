@@ -1,13 +1,13 @@
 package org.example;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
+import org.example.dao.UserDao;
+
 import java.sql.SQLException;
 
 public class Main {
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
-        UserDao dao1 = new DUserDao();
-        UserDao dao2 = new NUserDao();
+        UserDao dao1 = new UserDao();
+        UserDao dao2 = new UserDao();
 
         // d사 테스트
         User user = new User();
