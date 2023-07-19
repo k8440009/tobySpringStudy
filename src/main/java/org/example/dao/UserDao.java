@@ -21,7 +21,6 @@ public class UserDao {
     private ConnectionMaker connectionMaker;
 
     public UserDao(ConnectionMaker connectionMaker) {
-        // 여기는 클래스 이름이 나온다.
         this.connectionMaker = connectionMaker;
     }
 
