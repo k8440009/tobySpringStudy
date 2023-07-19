@@ -1,19 +1,18 @@
 package org.example;
 
-import org.example.dao.ConnectionMaker;
-import org.example.dao.DConnectionMaker;
-import org.example.dao.NConnectionMaker;
-import org.example.dao.UserDao;
+import org.example.dao.*;
 
 import java.sql.SQLException;
 
 public class UserDaoTest {
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
-        ConnectionMaker connectionMaker1 = new DConnectionMaker();
-        ConnectionMaker connectionMaker2 = new NConnectionMaker();
+//        ConnectionMaker connectionMaker1 = new DConnectionMaker();
+//        ConnectionMaker connectionMaker2 = new NConnectionMaker();
+//        UserDao dao1 = new UserDao(connectionMaker1);
+//        UserDao dao2 = new UserDao(connectionMaker2);
 
-        UserDao dao1 = new UserDao(connectionMaker1);
-        UserDao dao2 = new UserDao(connectionMaker2);
+        UserDao dao1 = new DaoFactory().userDao1();
+        UserDao dao2 = new DaoFactory().userDao2();
 
         // d사 테스트
         User user = new User();
